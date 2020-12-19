@@ -232,10 +232,10 @@
 
       
       <label>Code (Don't edit it):</label>
-      <input type="text" name="code" id="code" value="<?=code?>" readonly>
+      <input type="text" name="code" id="code">
       <br>
       <label>Order id (Don't edit it):</label>
-      <input type="text" name="orderid" id="orderid" value="<?=orderid?>" readonly>
+      <input type="text" name="orderid" id="orderid">
       <br>
 
       <label>输入你的名字以代替签名<font size="4" color="red">*</font></label>
@@ -264,9 +264,16 @@ Collection of a nasopharyngeal or oropharyngeal swab specimen is required for nu
       $("#flight_date").datetimepicker({format: 'Y/m/d H:i'});
 	  });
    
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+  }
+  document.getElementById("orderid").value = getQueryString("orderid");
+  document.getElementById("code").value = getQueryString("code");
+  document.getElementById("orderid").readOnly = true; 
+  document.getElementById("code").readOnly =  true;
 
-  //document.getElementById("orderid").readOnly = true; 
-  //document.getElementById("agent").readOnly =  true;
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzWXoQOeAkRAI12S-z98zZW-ep1xAaF0XjPkhcHny7LPsoE8hnKEL4RCQ/exec'
   const form = document.forms['submit-to-google-sheet']
 
