@@ -36,7 +36,7 @@ channels:
         - 
          type: httpts
          name: cctv3
-         url: http://aliplay.ye.cn/17e/5ca329bd828bb609ea30ccfc.m3u8
+         url: http://aliplay.ye.cn/17e/5ca329bd828bb609ea30ccf
          sdev: eth0
          dst: 10.8.14.177:1236
          dev: eth0
