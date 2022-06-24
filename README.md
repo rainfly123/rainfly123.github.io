@@ -15,30 +15,41 @@ Output suport HTTP-TS/UDP/
 
 ```
 #channels config file
-key: 19030a7be39db2fbde3560ce324fbd459fef52851ba6dcb3bf0016ab008b62a9
+key: a965c8b327878f44992589877ba9f18fe25c9b7ee1b934ee167cc1228e717182
 channels:
 
         - 
          type: rtsp
-         name: China
-         url: rtsp://183.59.156.50/P
-         sdev: ppp3
-         dst: 239.15.11.3:1234
-         dev: tap0
+         name: cctv1
+         url: rtsp://127.0.0.1:8554/abcd
+         sdev: lo
+         dst: 10.200.69.202:1234
+         dev: eth0
         - 
-         type: rtsp
+         type: hls
          name: cctv2
-         url: rtsp://183.59.156.50/PLTV/88888905cType=2
-         sdev: ppp2
-         dst: 239.15.11.2:1234
-         dev: tap0
+         url: http://aliplay.17.cn/live/5ca329bd828bb609ea30ccfc.m3u8
+         sdev: eth0
+         dst: 10.200.69.202:1235
+         dev: eth0
+
+        - 
+         type: httpts
+         name: cctv3
+         url: http://aliplay.ye.cn/17e/5ca329bd828bb609ea30ccfc.m3u8
+         sdev: eth0
+         dst: 10.8.14.177:1236
+         dev: eth0
+
         - 
          type: rtp
-         name: cctv3
-         url: rtp://239.77.0.170:5146
-         sdev: ppp1
-         dst: 239.15.11.4:1234
-         dev: tap0
+         name: cctv4
+         url: rtp://22.2.13.44:2332
+         sdev: eth0
+         dst: 10.8.14.177:1236
+         dev: eth0
+
+
 ```
 key is authrised key, if it is wrong, iptver can't have channel recovery function, maybe return after days  
 run the following command:
