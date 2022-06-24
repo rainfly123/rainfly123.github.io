@@ -1,1 +1,3 @@
 theme: jekyll-theme-minimal
+title: IPTVER
+description: A simple tool for proxy IPTV live stream to http + TS (chunked mode)
