@@ -8,8 +8,8 @@ Output suport HTTP-TS/UDP/
 
 ## Install
 1. tar xvf iptver.tar.gz 
-2. edit conf.yaml
-3. ./iptver  or nohup ./iptver & (yun in background)
+2. edit your conf.yaml
+3. ./iptver  or nohup ./iptver & (run in background)
 
 ## Aboud config
 
