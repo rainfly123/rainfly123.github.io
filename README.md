@@ -3,15 +3,15 @@
 
 ## Introduction  
 This is a simple iptv system tool, which is designed by Golang, It supports a few of input mode.
-Such as: HTTP-TS/RTSP/HLS/RTP(UDP Mulitcast or unicast)/ RAW-TS
-Output suport HTTP-TS/UDP/
+Such as: HTTP-TS/RTSP/HLS/RTP(UDP Mulitcast or unicast) or UDP RAW-TS.
+Output suport HTTP-TS/UDP(unicast or multicast) , iptver is a substitute of udpxy.
 
 ## Install
 1. tar xvf iptver.tar.gz 
-2. edit your conf.yaml
+2. edit your conf.yaml use your editor
 3. ./iptver  or nohup ./iptver & (run in background)
 
-## Aboud config
+## About config
 
 ```
 #channels config file
@@ -58,12 +58,12 @@ dmidecode -t 4 | grep ID |sort -u |awk -F': ' '{print $2}'
 ```
 then send out to 18910158363@163.com , I will send you the key, which should be writen in the conf.yaml
 
-1. type  input stream's mode, may be one of rtsp/rtp/httpts/hls/
-2. name  channel's name , must be unique.
-3. url   channel's input url
-4. sdev  is the netcard name , where the live stream flow in your computer, check it by run 'ifconfig'
-5. dst   is the output address, udp unicast or multicast
-6. dev   is the netcard name, through it the stream flow out
+1. type:  input stream's mode, may be one of rtsp/rtp/httpts/hls
+2. name:  channel's name , must be unique.
+3. url:   channel's input url
+4. sdev:  is the netcard name , through which the live stream flow in your computer, check it by run 'ifconfig'
+5. dst：  is the output address, udp unicast or multicast
+6. dev：  is the netcard name, through which the live stream will flow out
 
 ## API 
 ```
