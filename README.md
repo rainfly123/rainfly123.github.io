@@ -66,13 +66,13 @@ channels:
  
 ## API
 目前比较简单：
- - 查看频道码率 `curl http://serverip:8080/[channel name]/status `
+ - 查看频道码率 curl http://serverip:8080/[channel name]/status
    注意更改server ip 和 channel name，比如：
- `curl http://192.168.3.233:8080/cctv1/status `
+ curl http://192.168.3.233:8080/cctv1/status 
  查看cctv1的输入码率，192.168.3.233 是运行iptver的服务器IP地址。
- - 查看全部频道配置 `curl  http://serverip:8080/`
- - 观看频道直播，打开VLC 播放器，点击’打开网络串流‘，输入频道流地址，比如`http://serverip:8080/[channel name]/view `
- - `http://serverip:8080/chan/add` 增加频道, POST 方式提交，内容是JSON，参数参照配置文件
+ - 查看全部频道配置 curl  http://serverip:8080/
+ - 观看频道直播，打开VLC 播放器，点击’打开网络串流‘，输入频道流地址，比如http://serverip:8080/[channel name]/view 
+ - http://serverip:8080/chan/add 增加频道, POST 方式提交，内容是JSON，参数参照配置文件
  - curl http://serverip:8080/[channel name]/del 删除频道
  
 ## 关于授权
@@ -88,3 +88,10 @@ dmidecode -t 4 | grep ID |sort -u |awk -F': ' '{print $2}'
 或 [威堡IPTV系统解决方案专家](http://www.wephd.net/)
 
 
+## QA
+1. 如何关闭组播输出？
+   很简单 dst 字段留空 即可
+2. 上游频道服务中断，需要重启iptver吗？
+    不需要， 它本身具有频道自恢复能力，每30秒尝试重新链接上游频道
+3. 增加频道会自动启动吗？
+   如果参数都没问题， 添加频道成功会马上启动频道， 同理删除频道，马上停止频道
