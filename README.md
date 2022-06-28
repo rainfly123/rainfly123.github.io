@@ -73,6 +73,7 @@ channels:
  - 查看全部频道配置 `curl  http://serverip:8080/`
  - 观看频道直播，打开VLC 播放器，点击’打开网络串流‘，输入频道流地址，比如`http://serverip:8080/[channel name]/view `
  - `http://serverip:8080/chan/add` 增加频道, POST 方式提交，内容是JSON，参数参照配置文件
+ - curl http://serverip:8080/[channel name]/del 删除频道
  
 ## 关于授权
  原则采用单机授权方式， 每台机器一个授权码，
