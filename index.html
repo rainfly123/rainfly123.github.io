@@ -74,9 +74,12 @@ then send out to 18910158363@163.com , I will send you the key, which should be 
 <h2>API</h2>
 
 <p><code>
-    Check bitrate:      curl http://serverip:8080/[channel name]/status <br>
+Check bitrate:      curl http://serverip:8080/[channel name]/status <br>
 Check all channels:  curl  http://serverip:8080/ <br>
 Open with VLC:  http://serverip:8080/[channel name]/view <br>
+Delete channel  http://serverip:8080/[channel name]/del <br>
+Add channel http://serverip:8080/chan/add   POST method， Content shoud be json, <br>
+    curl -X POST http://localhost:8080/chan/add -d '{"type":"hls", "name":"cctv6", "url":"http://aliplay.17zuoye.cn/17live/62b96c94a7dad33af73a6260.m3u8", "sdev":"eth0", "dev":"lo", "dst":"127.0.0.1:2344"}'
 </code></p>
  </body>
      </html>
