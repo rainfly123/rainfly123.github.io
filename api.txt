@@ -1,0 +1,104 @@
+1 查看全部频道
+地址 ： http://localhost:8080/
+请求方法：GET
+返回格式：
+{
+	"channels": [{
+		"type": "rtsp",
+		"name": "cctv1",
+		"url": "rtsp://127.0.0.1:8554/abcd",
+		"sdev": "lo",
+		"dst": "10.200.69.202:1234",
+		"dev": "eth0"
+	}, {
+		"type": "hls",
+		"name": "cctv2",
+		"url": "http://aliplay.17.cn/live/5ca329bd828bb609ea30ccfc.m3u8",
+		"sdev": "eth0",
+		"dst": "10.200.69.202:1235",
+		"dev": "eth0"
+	}, {
+		"type": "httpts",
+		"name": "cctv3",
+		"url": "http://aliplay.ye.cn/17e/5ca329bd828bb609ea30ccfc.m3u8",
+		"sdev": "eth0",
+		"dst": "10.8.14.177:1236",
+		"dev": "eth0"
+	}, {
+		"type": "rtp",
+		"name": "cctv4",
+		"url": "rtp://239.2.13.44:2332",
+		"sdev": "eth0",
+		"dst": "10.8.14.177:1236",
+		"dev": "eth0"
+	}, {
+		"type": "hls",
+		"name": "cctv44",
+		"url": "http://aliplay.17.cn/live/62b95a73e6b5ee017cd46e29.m3u8",
+		"sdev": "eth0",
+		"dst": "127.0.0.1:2344",
+		"dev": "lo"
+	}]
+}
+
+2 查看频道码率
+地址 ： http://localhost:8080/cctv1/status
+请求方法：GET
+返回格式：
+{
+	"bitrate": 768,
+	"channel": "cctv1"
+}
+注意更改频道名称， bitrate 单位为kbps
+
+3 观看频道内容
+地址 ： http://localhost:8080/cctv1/view
+请求方法：GET
+返回格式：http chunked 模式返回视频数据
+
+4 增加频道
+地址 ： http://localhost:8080/chan/add
+请求方法：POST
+请求头：Content-Type: application/json; charset=utf-8
+请求格式举例：
+{
+	"type": "hls",
+	"name": "cctv5",
+	"url": "http://aliplay.17zuoye.cn/17live/62b95a73e6b5ee017cd46e29.m3u8",
+	"sdev": "eth0",
+	"dev": "lo",
+	"dst": "127.0.0.1:2344"
+}
+返回格式：
+{
+	"code": 0,
+	"msg": "Ok"
+}
+也有可能是：
+{
+	"code": 1,
+	"msg": "参数错误"
+} 或
+{
+	"code": 2,
+	"msg": "频道已存在"
+}
+
+5 删除频道
+地址 ： http://localhost:8080/cctv1/del
+请求方法：GET
+返回格式：
+返回格式：
+{
+	"code": 0,
+	"msg": "Ok"
+}
+也有可能是：
+{
+	"code": 1,
+	"msg": "频道不存在"
+} 或
+{
+	"code": 2,
+	"msg": "用户正在观看，稍后再试"
+}
