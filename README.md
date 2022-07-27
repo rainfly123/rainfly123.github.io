@@ -5,8 +5,8 @@ A tool for proxy RTSP/HLS/HTTP+TS/RTP live stream to HTTP+TS  or UDP  multicast 
 某种程度上可以替换掉udpxy，但是功能比他多，欢迎使用。
 ## 安装
 
-[下载页面]
-暂不公开
+[下载页面](https://github.com/rainfly123/rainfly123.github.io/blob/master/iptv.tar.gz)
+
 
 首先通过以上网址，下载安装包。
 1.  `tar xvf iptver.tar.gz` 解压缩包
@@ -74,6 +74,7 @@ channels:
  - 观看频道直播，打开VLC 播放器，点击’打开网络串流‘，输入频道流地址，比如http://serverip:8080/[channel name]/view 
  - http://serverip:8080/chan/add 增加频道, POST 方式提交，内容是JSON，参数参照配置文件
  - curl http://serverip:8080/[channel name]/del 删除频道
+ 详细请参考[接口文档](https://github.com/rainfly123/rainfly123.github.io/blob/master/api.txt)
  
 ## 关于授权
  原则采用单机授权方式， 每台机器一个授权码，
