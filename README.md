@@ -5,7 +5,7 @@ A tool for proxy RTSP/HLS/HTTP+TS/RTP live stream to HTTP+TS  or UDP  multicast 
 某种程度上可以替换掉udpxy，但是功能比他多，欢迎使用。
 ## 安装
 
-[下载页面](https://github.com/rainfly123/rainfly123.github.io/blob/master/iptv.tar.gz)
+iptver.tar.gz
 
 
 首先通过以上网址，下载安装包。
