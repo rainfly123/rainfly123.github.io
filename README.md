@@ -1,5 +1,5 @@
-# rainfly123.github.io
-A tool for proxy RTSP/HLS/HTTP+TS/RTP live stream to HTTP+TS  or UDP  multicast /unicast streams
+# iptver 
+A great tool for proxy RTSP/HLS/HTTP+TS/RTP live stream to HTTP+TS  or UDP  multicast /unicast streams
 ## IPTVER
 这是一款直播流代理工具， 可以把RTSP、HLS、HTTP-TS、RTP流拉取到本地， 然后对外提供HTTP-TS 播放格式，也可以支持UDP （单播、组播输出）
 某种程度上可以替换掉udpxy，但是功能比他多，欢迎使用。
@@ -86,7 +86,7 @@ dmidecode -t 4 | grep ID |sort -u |awk -F': ' '{print $2}'
 
 收到的授权码写进conf.yaml 的key 字段即可。
 这是我的微信：Rainfly003 ，有问题可以添加我的微信联系。 
-或 [威堡IPTV系统解决方案专家](http://www.wephd.net/)
+
 
 
 ## QA
