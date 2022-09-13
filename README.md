@@ -1,5 +1,5 @@
 # iptver 
-A great tool for proxy RTSP/HLS/HTTP+TS/RTP live stream to HTTP+TS  or UDP  multicast /unicast streams
+A great tool for proxy RTSP/HLS/HTTP+TS/RTP live stream to HTTP+TS  or UDP  multicast /unicast streams, a substitute of UDPXY, but more powerful .
 ## IPTVER
 这是一款直播流代理工具， 可以把RTSP、HLS、HTTP-TS、RTP流拉取到本地， 然后对外提供HTTP-TS 播放格式，也可以支持UDP （单播、组播输出）
 某种程度上可以替换掉udpxy，但是功能比他多，欢迎使用。
