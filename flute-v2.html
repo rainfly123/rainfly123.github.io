@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>小乙箫韵</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+  <div class="jumbotron">
+    <h1>小乙箫韵</h1>
+    <p>所有开孔位置都是吹口上沿到音孔中心的位置</p>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    环境温度：
+                </button>
+            </span>
+            <input id="temperature" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    管子频率(<250)：
+                </button>
+            </span>
+            <input id="basefreq" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    实际管长(毫米)：
+                </button>
+            </span>
+            <input id="reallong" type="text" class="form-control">
+        </div>
+    </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    开孔半径(毫米)：
+                </button>
+            </span>
+            <input id="radius" type="text" class="form-control">
+        </div>
+    </div>
+    
+  </div>
+  <p></p>
+  <div class="row">
+   <div class="btn-group btn-group-justified">
+    <a id="cancel" href="#" class="btn btn-primary">取消</a>
+    <a id="sure" href="#" class="btn btn-success">确定</a>
+   </div>
+  </div>
+  <p></p>
+  
+  <div class="row" >
+    <div class="col-sm-12" id="label1">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+    <h4>每高10音分，矫正值减少2mm，反之亦然。 </h4>   
+    </div>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" id="finaldelta">    
+    </div>
+    <div class="col-sm-4">
+        <a href="#" class="btn btn-success btn-group-justified" id="final">确定</a>
+    </div>
+   </div>
+   <div class="row" >
+    <div class="col-sm-12" id="label2">
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#cancel").click(function(){
+          $("#temperature").val("");
+          $("#basefreq").val("");
+          $("#reallong").val("");
+          $("#radius").val("");
+      });
+      $("#sure").click(function(){
+      var  hzE = 233.1;
+      var  hzF = 246.94;
+      var  hzG = 277.2;
+      var  hzA = 311.3;
+      var t = $("#temperature").val();
+      var f = $("#basefreq").val();
+      var l = $("#reallong").val();
+      var r = $("#radius").val();
+      r = parseFloat(r)
+      var idealLong = (331000 + 610 * t) / (2 * f);
+      idealLong=idealLong.toFixed(1);
+      var delta = idealLong - l;
+      delta  = delta.toFixed(1);
+      var posE = (331000 + 610 * t) / (2 * hzE) - delta + r;
+      posE = posE.toFixed(1);
+      var posF = (331000 + 610 * t) / (2 * hzF) - delta + r;
+      posF = posF.toFixed(1);
+      var posG = (331000 + 610 * t) / (2 * hzG) - delta + r;
+      posG = posG.toFixed(1);
+      var posA = (331000 + 610 * t) / (2 * hzA) - delta + r;
+      posA = posA.toFixed(1);
+      var temp = "<h4>校正前Δ: ";
+      temp += delta
+      temp += "mm E助音孔: " + posE + "mm(A3#)"
+      temp += " F助音孔: " + posF + "mm(B3)"
+      temp += " G助音孔: " + posG + "mm(C4#)"
+      temp += " A助音孔: " + posA + "mm(D4#)</h4>"
+      $("#label1").html(temp);
+    });
+     
+      $("#final").click(function(){
+        var finalD = $("#finaldelta").val();
+        var t = $("#temperature").val();
+        var r = $("#radius").val();
+        r = parseFloat(r)
+        var hzE = [246.9, 277.2, 293.7,	311.3, 329.6, 370, 392, 415.3, 466.2];
+        var hzF = [261.6, 293.7, 311.1, 329.6, 349.2, 392, 415.3, 440, 493.9];
+        var hzG = [293.7, 329.6, 349.2, 370, 392, 440, 466.2, 493.9, 554.4];
+        var hzA = [329.6, 370, 392, 415.3, 440, 493.9, 523.3, 554.4, 622.3];
+
+        var rationA = [1, 0.858, 0.799, 0.75, 0.71, 0.623, 0.5652, 0.5325, 0.479];
+        var rationB = [1, 0.846, 0.795, 0.75, 0.70, 0.6, 0.565, 0.525, 0.455];
+
+        var toneE = ['B3:', ' C4#:', ' D4:', ' D4#:', ' E4:', ' F4#:', ' G4:', ' G4#:', ' A4#:'];
+        var toneF = ['C4:', ' D4:', ' D4#:',' E4:', ' F4:', ' G4:', ' G4#:', ' A4:', ' B4:'];
+        var toneG = ['D4:', ' E4:', ' F4:', ' F4#:', ' G4:', ' A4:', ' A4#:', ' B4:', ' C5#:'];
+        var toneA = ['E4:', ' F4#:', ' G4:', ' G4#:', ' A4:', ' B4:', ' C5:', ' C5#:', ' D5#:'];
+
+        //E 调 
+        var out = "<h4>E调： 基音孔，第一孔，第二孔，第三孔，第四孔，第五孔，第六孔，第七孔，第八孔</h4>";
+        out += "<h4>陈正生:";
+
+        var holePosBaseE =  (331000 + 610 * t) / (2 * hzE[0]) - finalD;
+         
+        for (let i = 0, len = rationA.length; i < len; i++) {
+                
+                holePos = holePosBaseE * rationA[i]  + r;
+                holePos = holePos.toFixed(1);
+                out += toneE[i] + holePos ;
+         }
+         out += "</h4><h4>推荐:";
+         for (let i = 0, len = rationB.length; i < len; i++) {
+            holePos = holePosBaseE * rationB[i] + r;
+            holePos = holePos.toFixed(1);
+            out += toneE[i] + holePos ;
+          }
+          out += "</h4>";
+
+       
+         //F 调
+        out += "<h4>F调： 基音孔，第一孔，第二孔，第三孔，第四孔，第五孔，第六孔，第七孔，第八孔</h4>";
+        out += "<h4>陈正生:";
+         var holePosBaseF =  (331000 + 610 * t) / (2 * hzF[0]) - finalD;
+         
+         for (let i = 0, len = rationA.length; i < len; i++) {
+                
+                holePos = holePosBaseF* rationA[i]  + r;
+                holePos = holePos.toFixed(1);
+                out += toneF[i] + holePos ;
+         }
+         out += "</h4><h4>推荐:";
+         for (let i = 0, len = rationB.length; i < len; i++) {
+            holePos = holePosBaseF* rationB[i] + r;
+            holePos = holePos.toFixed(1);
+            out += toneF[i] + holePos ;
+          }
+          out += "</h4>";
+
+             //G 调
+             out += "<h4>G调： 基音孔，第一孔，第二孔，第三孔，第四孔，第五孔，第六孔，第七孔，第八孔</h4>";
+                /*
+                for (let i = 0, len = hzG.length; i < len; i++) {
+                    holePos = (331000 + 610 * t) / (2 * hzG[i]) - finalD + r;
+                    holePos = holePos.toFixed(1);
+                    out += toneG[i] + holePos ;
+                 }
+                 */
+                 //out += "</h4><h4>陈正生:";
+                 out += "<h4>陈正生:";
+                 var holePosBaseG =  (331000 + 610 * t) / (2 * hzG[0]) - finalD;
+                 
+                 for (let i = 0, len = rationA.length; i < len; i++) {
+                        
+                        holePos = holePosBaseG* rationA[i] + r;
+                        holePos = holePos.toFixed(1);
+                        out += toneG[i]+ holePos ;
+                 }
+                 out += "</h4><h4>推荐:";
+                 for (let i = 0, len = rationB.length; i < len; i++) {
+                    holePos = holePosBaseG* rationB[i] + r;
+                    holePos = holePos.toFixed(1);
+                    out += toneG[i]+ holePos ;
+                  }
+                  out += "</h4><h4>";
+
+                //A 调
+                out += "<h4>A调： 基音孔，第一孔，第二孔，第三孔，第四孔，第五孔，第六孔，第七孔，第八孔</h4>";
+                 out += "<h4>陈正生:";
+                 var holePosBaseA =  (331000 + 610 * t) / (2 * hzA[0]) - finalD;
+                 
+                 for (let i = 0, len = rationA.length; i < len; i++) {
+                        
+                        holePos = holePosBaseA * rationA[i] + r;
+                        holePos = holePos.toFixed(1);
+                        out += toneA[i]+ holePos ;
+                 }
+                 out += "</h4><h4>推荐:";
+                 for (let i = 0, len = rationB.length; i < len; i++) {
+                    holePos = holePosBaseA * rationB[i] + r;
+                    holePos = holePos.toFixed(1);
+                    out += toneA[i]+ holePos ;
+                  }
+                  out += "</h4>";
+
+        $("#label2").html(out);
+      });
+
+    });
+    </script>
+    </head>
+</body>
+</html>
